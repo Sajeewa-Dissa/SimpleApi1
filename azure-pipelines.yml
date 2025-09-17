@@ -9,7 +9,9 @@ trigger:
 #pool:
 # vmImage: 'windows-latest'
 
-pool: default
+#pool: default
+
+pool: 'Azure Pipelines'
 
 variables:
   solution: '**/*.sln'
