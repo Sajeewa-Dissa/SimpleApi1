@@ -55,5 +55,5 @@ steps:
     zipAfterPublish: true
 
 - task: PublishBuildArtifacts@1
-  displayName: 'publish artifacts'
+  displayName: 'publish artifacts' # zip is published to agent folder 'C:\agent\_work\1\a' 
 
