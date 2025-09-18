@@ -6,12 +6,12 @@
 trigger:
 - main
 
-#pool:
-# vmImage: 'windows-latest'
+pool:
+ vmImage: 'windows-latest'
 
 #pool: default
 
-pool: 'Azure Pipelines'
+#pool: 'Azure Pipelines'
 
 variables:
   solution: '**/*.sln'
