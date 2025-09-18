@@ -33,6 +33,13 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+# Test
+- task: DotNetCoreCLI@2 # .NET Core v2 task; with this, the 'command: test' input is in effect running 'dotnet test'
+  inputs:
+    command: test
+    projects: '**/*Test/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
 # This is a dot net build command
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
