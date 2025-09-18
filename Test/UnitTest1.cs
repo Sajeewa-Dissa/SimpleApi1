@@ -11,7 +11,7 @@ namespace SimpleApi1.Test
         [Fact]
         public void GetReturnsSomething()
         {
-            string returnString = controller.Get(2).Content.ToString() ?? "";
+            string returnString = controller?.Get(2)?.Content?.ToString() ?? "";
             Assert.Equal("Get returned 2", returnString);
         }
 
