@@ -7,7 +7,7 @@
 #- main
 trigger: none
 
-# default pool runs a local agent and is available for public projects. Q. Does it work for private?
+# default pool runs a local agent and is available for public projects. Q. Does it work for private projects implicitly? A. Yes it does.
 pool: default
 
 # Only available if project is private. This runs the 'Azure Pipelines' agent automatically.
