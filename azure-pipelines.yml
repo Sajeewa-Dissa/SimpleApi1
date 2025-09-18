@@ -44,7 +44,7 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-# CWe run two tasks to building the artifact. The first is a 'dotnet publish' command. the second one zips the output into an artifact
+# We run two tasks to building the artifact. The first is a 'dotnet publish' command. the second one zips the output into an artifact
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
