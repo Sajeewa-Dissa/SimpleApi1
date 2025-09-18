@@ -44,3 +44,16 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
+# CWe run two tasks to building the artifact. The first is a 'dotnet publish' command. the second one zips the output into an artifact
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+  inputs:
+    command: publish
+    publishWebProjects: false
+    projects: 'src/SimpleApi1.csproj'
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'publish artifacts'
+
