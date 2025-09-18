@@ -3,11 +3,21 @@
 # Add steps that publish symbols, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
 
-trigger:
-- main
+name: $(Year:yyyy).$(Month).$(DayOfMonth).$(Rev:r)
 
-pool:
-  vmImage: 'windows-latest'
+#trigger:
+#- main
+trigger: none
+
+# default pool runs a local agent and is available for public projects. Q. Does it work for private projects implicitly? A. Yes it does.
+pool: default
+
+# Only available if project is private. This runs the 'Azure Pipelines' agent automatically.
+#pool:
+# vmImage: 'windows-latest'
+
+# Only available if project is private. This pool runs as ubuntu-latest which is twice the speed of windows-latest btw.
+#pool: 'Azure Pipelines'
 
 variables:
   solution: '**/*.sln'
@@ -15,6 +25,22 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- script: echo Hello world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo The block or pipe char renders text as written out including line breaks
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+# Test
+- task: DotNetCoreCLI@2 # .NET Core v2 task; with this, the 'command: test' input is in effect running 'dotnet test'
+  inputs:
+    command: test
+    projects: '**/*Test/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# This is a dot net build command
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
