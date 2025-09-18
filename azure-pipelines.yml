@@ -49,7 +49,7 @@ steps:
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
     command: publish
-    publishWebProjects: false
+    publishWebProjects: false #added by Les jackson because as an API project it may have to be explicitly added and set to false for successful run
     projects: 'src/SimpleApi1.csproj'
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: true
